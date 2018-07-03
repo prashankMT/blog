@@ -16,7 +16,11 @@ async function onCreate() {
   const content = $(SELECTORS.MODAL)
     .find(SELECTORS.BODY)
     .val();
-  await BlogService.create({ title, content });
+  const id = $(this).data("id");
+  const data = { title, content, id };
+
+  await BlogService.create(data);
+
   closeCreateModal();
   await renderList();
 }
@@ -65,8 +69,8 @@ function selectFirstBlog() {
 
 async function openCreateModal() {
   const id = $(this).data("edit");
-  let data = {}
-  if(id){
+  let data = {};
+  if (id) {
     data = await BlogService.get(id);
     data = data[0];
   }
@@ -89,7 +93,11 @@ const attachHandlers = () => {
   $(SELECTORS.DELETE_ALL).on("click", onDelete);
   $(SELECTORS.MODAL).on("click", SELECTORS.POST, onCreate);
   $(SELECTORS.DETAILS_SECTION).on("click", SELECTORS.DELETE, onDelete);
-  $(SELECTORS.DETAILS_SECTION).on("click", SELECTORS.EDIT_BLOG,openCreateModal)
+  $(SELECTORS.DETAILS_SECTION).on(
+    "click",
+    SELECTORS.EDIT_BLOG,
+    openCreateModal
+  );
 };
 
 export const init = () => {

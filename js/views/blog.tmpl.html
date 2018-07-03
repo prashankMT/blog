@@ -12,11 +12,11 @@
         </div>
         <div class="form-group">
             <label for="body" class="col-form-label">Text:</label>
-            <textarea class="form-control" id="body">{{content}}</textarea>
+            <textarea rows=5 class="form-control" id="body">{{content}}</textarea>
         </div>
     </form>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-primary" data-post>Post</button>
+    <button type="button" class="btn btn-primary" data-post data-id={{id}}>Post</button>
 </div>

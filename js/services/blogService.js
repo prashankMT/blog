@@ -49,9 +49,9 @@ BlogService.get = async id => {
     throw new Error("get failed");
   }
 };
-BlogService.create = async data => {
+BlogService.create = async (data = {}) => {
   try {
-    data = await ApiService.post(ApiConfig.blogOperation(), {
+    data = await ApiService.post(ApiConfig.blogOperation(data.id), {
       body: QueryString.stringify(preProcessBlog(data)),
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
@@ -74,11 +74,5 @@ BlogService.remove = async id => {
     throw new Error("deletion failed");
   }
 };
-BlogService.update = async data => {
-  try {
-    const data = await ApiService.post(ApiConfig.blogOperation(id));
-    CacheService.set(id, data);
-    return id;
-  } catch (error) {}
-};
+
 export default BlogService;
