@@ -17,7 +17,6 @@ const parseBlog = (data = {}) => {
 };
 
 const preProcessBlog = (data = {}) => {
-  debugger;
   const { content, title } = data;
   return {
     text: content,
